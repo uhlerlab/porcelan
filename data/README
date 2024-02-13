@@ -1,7 +1,0 @@
-For convenience we include all small pre-processed data files
-needed to reproduce the paper figures here. 
-
-3435_NT_T1_apn_pd_triplet_lut.npy is not included due to GitHub 
-file size restrictions. This file can easily be reproduced by 
-running the corresponding cells in tumor_preprocessing.ipynb.
-
