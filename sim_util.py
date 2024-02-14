@@ -15,7 +15,7 @@ def get_cell_types_tedsim(name, fine=True):
 
 
 # cell_types must be a pd.Series with cell names as index
-def get_lognorm_expression_tedsim(name, perm_seed=None, cell_types=None):
+def get_lognorm_expression_tedsim(name, perm_seed=None, cell_types=None, return_perm_ids=False):
   counts = pd.read_csv(f'data/tedsim/counts_{name}.csv').T
   counts.index = counts.index.str.replace('V', 't')
   counts.index.name = 'cellID'
@@ -35,4 +35,6 @@ def get_lognorm_expression_tedsim(name, perm_seed=None, cell_types=None):
   counts *= 10000
   # log2(1 + x) tranform
   counts = np.log2(1 + counts)
+  if return_perm_ids:
+    return counts, perm_ids
   return counts
