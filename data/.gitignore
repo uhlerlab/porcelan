@@ -19,3 +19,4 @@ GSE126954_gene_by_cell_count_matrix.txt
 *.gz
 GSE117542_embryo2_normalized_log_counts.txt
 GSM3302829_embryo3_normalized_log_counts.txt
+temp.nwk 
