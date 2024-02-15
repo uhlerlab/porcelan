@@ -1,6 +1,7 @@
 The figure notebooks contain all code to reproduce the data files and plots
-in the figures that were produced computationally. The data files for the 
-figures are also provided in the `results` directory for convenience.
+in the figures that were produced computationally. The data displayed in the 
+figures is also provided in the `results` directory for any figures that take 
+more than a few seconds to produce.
 
 The figure notebooks are large due to interactive plots and may not be viewable
 on GitHub. If you want to view them without downloading, you can check out these
