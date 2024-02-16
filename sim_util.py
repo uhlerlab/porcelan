@@ -38,3 +38,20 @@ def get_lognorm_expression_tedsim(name, perm_seed=None, cell_types=None, return_
   if return_perm_ids:
     return counts, perm_ids
   return counts
+
+
+def generate_bmtm_data_from_tree(etree, dim, sigma=1, seed=12345, gene_prefix='g'):
+  np.random.seed(seed)
+  for node in etree.traverse('levelorder'):
+    if node == etree:
+      etree.add_features(noise=np.random.normal(size=dim, scale=sigma))
+    else:
+      node.add_features(noise=node.up.noise + np.random.normal(size=dim, scale=sigma))
+
+  leaves = etree.get_leaves()
+  labels = []
+  data = np.zeros((len(leaves), dim))
+  for i, node in enumerate(leaves):
+    labels.append(node.name)
+    data[i] = node.noise
+  return pd.DataFrame(data, index=labels, columns=[f'{gene_prefix}{n:04d}' for n in range(dim)])

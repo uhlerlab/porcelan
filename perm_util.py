@@ -1,10 +1,6 @@
 import pandas as pd
 import numpy as np
 from ete3 import Tree
-import torch
-from tqdm import trange
-
-from tree_util import get_tree_dists
 
 
 def split_by_type(names_to_keep, cell_types):
@@ -71,7 +67,7 @@ def subset_labels(subsets, labels):
 
 def extract_subsets_with_depth(tree, depth, include_labels, return_ids=False):
   if isinstance(tree, str): 
-    tree = Tree(tree, format=1)
+    tree = Tree(tree, quoted_node_names=True, format=1)
   else:
     tree = tree.copy()
   subsets = []
@@ -95,7 +91,6 @@ def extract_subsets_with_depth(tree, depth, include_labels, return_ids=False):
     else:
       assert depth > 0
       depth -= 1  # try shallower subtrees
-      # print('Decreasing depth to', depth)
   
   assert sum(map(len, subsets)) == len(include_labels)
   if not return_ids:

@@ -132,6 +132,17 @@ def get_lac_for_all_subtrees_all_genes(tree_path, expression_df, decay_factor=10
   return scores_subtree, scores_remaining
 
 
+def lac_theoretical(mrca_depths, tree_dists, gamma=10):
+  weights = np.triu(np.exp(-tree_dists**2/gamma), k=1)
+  N = len(mrca_depths)
+  V = np.sum(np.diag(mrca_depths)) / (N-1) - np.sum(mrca_depths)/(N * (N-1))
+  C = np.sqrt(np.sum(weights**2))
+
+  covs = mrca_depths
+  covs = covs - covs.mean(axis=1).reshape(-1, 1) - covs.mean(axis=0).reshape(1, -1) + covs.mean(axis=(0, 1))
+  return np.sum(weights * covs) / (C * V)
+
+
 def lac_theoretical_perm(mrca_depths, tree_dists, subsets, gamma=10):
   weights = np.triu(np.exp(-tree_dists**2/gamma), k=1)
   N = len(mrca_depths)
@@ -155,7 +166,7 @@ def lac_theoretical_perm(mrca_depths, tree_dists, subsets, gamma=10):
 
 
 def get_perm_dists(expression, tree_path, lut_path=None, device='cuda:0', shuffle_seed=None,
-                   gene_group_size=50, subtree_labels=None, decay_factor=10):
+                   gene_group_size=50, subtree_labels=None, decay_factor=10, quoted_node_names=True):
 
   labels_in_order = expression.index
   if shuffle_seed is not None:
@@ -168,7 +179,7 @@ def get_perm_dists(expression, tree_path, lut_path=None, device='cuda:0', shuffl
   if subtree_labels is None:
     subtree_labels = labels_in_order
   
-  tree = Tree(tree_path, quoted_node_names=True)
+  tree = Tree(tree_path, quoted_node_names=quoted_node_names, format=1)
   _, max_depth = tree.get_farthest_node()
   max_depth = int(max_depth)
 
@@ -195,7 +206,11 @@ def get_perm_dists(expression, tree_path, lut_path=None, device='cuda:0', shuffl
   tree_dists = tree_dists.to(device)
 
   data_norm = ((data - data.mean(axis=0))/data.std(axis=0))
-  expression_dists = torch.sqrt(torch.sum((data[None] - data[:, None])**2, axis=2))
+  # expression_dists = torch.sqrt(torch.sum((data[None] - data[:, None])**2, axis=2))
+  expression_dists = 0
+  for left in range(0, expression.shape[1], gene_group_size):
+    expression_dists += torch.sum((data[None, :, left:left+gene_group_size] - data[:, None, left:left+gene_group_size])**2, axis=2)
+  expression_dists = torch.sqrt(expression_dists)
 
   depths = []
   seeds = []
@@ -283,3 +298,15 @@ def get_expected_lac_bmtm_depth_perm(etree, labels_in_order, labels_subset=None)
   df['depth'] = list(range(1, max_depth+1))
   df['lac'] = theo_perm_lac
   return df
+
+
+# for single gene (gene dim in expression is replicates)
+def lac_empirical(tree_dists, expression, gamma=10):
+  weights = np.triu(np.exp(-tree_dists**2/gamma), k=1)
+  norm_expression = (expression - np.mean(expression, axis=0, keepdims=True)) / np.std(
+      expression, axis=0, keepdims=True, ddof=1)
+  N, M = norm_expression.shape
+  terms = weights.reshape(N, N, 1) * norm_expression.reshape(1, N, M) * norm_expression.reshape(N, 1, M)
+  C = np.sqrt(np.sum(weights**2))
+  lacs = np.sum(terms, axis=(0, 1)) / C
+  return np.mean(lacs), np.std(lacs, ddof=1)

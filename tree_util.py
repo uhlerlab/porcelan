@@ -5,6 +5,14 @@ from Bio import Phylo
 from ete3 import Tree
 
 
+def make_binary_tree(depth):
+  subtrees = [f'L{n:04d}:1' for n in range(2**depth)]
+  while len(subtrees) > 1:
+    a, b, subtrees = subtrees[0], subtrees[1], subtrees[2:]
+    subtrees.append(f'({a}, {b}):1')
+  return subtrees[0] + ';'
+
+
 def _cell_dist(pdm, c1, c2):
   return pdm(pdm.taxon_namespace.get_taxon(c1), pdm.taxon_namespace.get_taxon(c2))
 
