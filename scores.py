@@ -44,7 +44,8 @@ def get_dist_corr_for_all_genes(tree_dists, expression, label_subset=None):
   return scores
 
 
-def get_lac_for_all_genes(tree_dists, expression, label_subset=None, device='cuda:0', decay_factor=10):
+def get_lac_for_all_genes(tree_dists, expression, label_subset=None, device='cuda:0', 
+                          decay_factor=10, gene_group_size=None):
   if label_subset is not None:
     insubset = expression.index.isin(label_subset)
     tree_dists = tree_dists[insubset][:, insubset]
@@ -53,7 +54,7 @@ def get_lac_for_all_genes(tree_dists, expression, label_subset=None, device='cud
   norm_expression = torch.tensor((expression.values - expression.values.mean(axis=0))/expression.values.std(axis=0)).float().to(device)
   tree_dists = torch.from_numpy(tree_dists).to(device)
   weights = torch.triu(torch.exp(- torch.square(tree_dists) / decay_factor), diagonal=1)
-  scores = local_autocorrelation(weights, norm_expression, agg_func=lambda x: x).cpu()
+  scores = local_autocorrelation(weights, norm_expression, agg_func=lambda x: x, gene_group_size=gene_group_size).cpu()
   scores = pd.DataFrame(scores, index=expression.columns, columns=['score'])
 
   return scores
