@@ -1,0 +1,5 @@
+*.pt
+!3435_NT_T1_AELR-2-1000_lr1em4_e500_b128_hvg.pt
+!3435_NT_T1_AELR-2-100_lr1em4_e500_b128_hvg.pt
+!3435_NT_T1_AELR-3-1000_lr1em4_e500_b128_hvg.pt
+!3435_NT_T1_AELR-2-1000_lr1em4_e500_b128_h1_pd_pre_ts112221_perm12345d*type_g100_hvg_e250.pt

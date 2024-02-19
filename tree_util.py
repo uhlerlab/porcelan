@@ -3,6 +3,7 @@ from tqdm import trange
 import pandas as pd
 from Bio import Phylo
 from ete3 import Tree
+import dendropy
 
 
 def make_binary_tree(depth):
@@ -180,6 +181,27 @@ def augment_tree_with_weights(tree_path, weights, leaf_weight=None, quoted_node_
       node.dist = leaf_weight
 
   return etree
+
+
+def get_top_down_cluster_ids(tree_path, labels, depth=2):
+  tree = dendropy.Tree.get(path=tree_path, schema='newick')
+  cluster_roots = [tree.seed_node]
+  for i in range(depth):
+    cluster_children = []
+    for root in cluster_roots:
+      if root.is_leaf():
+        cluster_children.append(root)
+      else:
+        cluster_children.extend(list(root.child_node_iter()))
+    cluster_roots = cluster_children
+  labels_to_ids = {} 
+  cluster_id = 1
+  for root in cluster_roots:
+    for node in root.leaf_nodes():
+      labels_to_ids[node.taxon.label] = cluster_id
+    cluster_id += 1
+  return np.array([node.label for node in cluster_roots]), np.array([labels_to_ids[x] for x in labels])
+
 
 # Adapted from https://chart-studio.plotly.com/~empet/14834.embed
 def _get_circular_tree_data(tree, order='level', dist=1, start_angle=0, end_angle=360, start_leaf='first', points_per_arc=(10, 5, 3)):

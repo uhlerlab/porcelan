@@ -94,7 +94,7 @@ def _augment_source_with_leaf_embedding(node_data, cell_labels, embed_xy, suffix
 
 def single_tree_plot(nodes, edges, cell_labels, colors, color_names,
                      ordinal_colors=False, continuous_colors=False,  use_kp_domain=True,
-                     disable_grid=True, show_legend=True, tooltip_names=None,
+                     disable_grid=True, show_legend=True, tooltip_names=None, nan_smaller=False,
                      width=350, node_size=30, additional_colors=[], additional_color_domain=[]):
   
   nodes = _augment_source_with_labels(nodes, cell_labels, colors, color_names)
@@ -128,7 +128,7 @@ def single_tree_plot(nodes, edges, cell_labels, colors, color_names,
       color=alt.condition('datum.color_value !== 0.0012345678', cond_color, alt.value('gray')),
       # color=alt.condition('isValid(datum.color_value)', cond_color, alt.value('gray')),
       tooltip=tooltip_names,
-      size=alt.SizeValue(node_size)
+      size=alt.condition('datum.color_value !== 0.0012345678', alt.SizeValue(node_size), alt.SizeValue(20) if nan_smaller else alt.SizeValue(node_size)),
   ).properties(
     width=width,
     height=width

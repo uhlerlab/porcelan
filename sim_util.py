@@ -55,3 +55,10 @@ def generate_bmtm_data_from_tree(etree, dim, sigma=1, seed=12345, gene_prefix='g
     labels.append(node.name)
     data[i] = node.noise
   return pd.DataFrame(data, index=labels, columns=[f'{gene_prefix}{n:04d}' for n in range(dim)])
+
+
+def generate_noise_data_from_tree(etree, dim, mu=0, sigma=1, seed=54321, gene_prefix='g'):
+  np.random.seed(seed)
+  leaves = [n.name for n in etree.get_leaves()]
+  data = np.random.normal(size=(len(leaves), dim), scale=sigma)
+  return pd.DataFrame(data, index=leaves, columns=[f'{gene_prefix}{n:04d}' for n in range(dim)])
