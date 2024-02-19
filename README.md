@@ -1,7 +1,7 @@
 # PORCELAN: Detecting lineage-related gene expression patterns
 This repository contains code for the paper "Detecting lineage-related gene expression patterns". PORCELAN is designed for analyzing lineage-resolved gene expression datasets:
 
-![porcelan_overview](https://github.com/hmsch/porcelan/assets/34376746/081d272f-f7e2-4963-9cf4-4eba570271fa)
+![porcelan_overview](https://github.com/uhlerlab/porcelan/assets/34376746/bc4ba6c2-00c9-4d34-b4e6-332ba64cf829)
 
 ## Repository overview
 
