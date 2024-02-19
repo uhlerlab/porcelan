@@ -1,3 +1,5 @@
+# Figure notebooks
+
 The figure notebooks contain all code to reproduce the data files and plots
 in the figures that were produced computationally. The data displayed in the 
 figures is also provided in the `results` directory for any figures that take 
