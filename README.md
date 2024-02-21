@@ -1,5 +1,5 @@
 # PORCELAN: Detecting lineage-related gene expression patterns
-This repository contains code for the paper "Detecting lineage-related gene expression patterns". PORCELAN is designed for analyzing lineage-resolved gene expression datasets:
+This repository contains code for the paper "Detecting lineage-related gene expression patterns". We developed **P**ermutation, **O**ptimization, and **R**epresentation learning based single **C**ell gene **E**xpression and **L**ineage **AN**alysis (PORCELAN) to identify lineage-informative genes or subtrees where lineage and expression are tightly coupled:
 
 ![porcelan_overview](https://github.com/uhlerlab/porcelan/assets/34376746/bc4ba6c2-00c9-4d34-b4e6-332ba64cf829)
 
@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ```
 **R:**
 
-Follow instructions for installing TedSim here: https://github.com/Galaxeee/TedSim/tree/main 
+We only use R to simulate lineage-resolved gene expression data with TedSim ([installation instructions](https://github.com/Galaxeee/TedSim/tree/main)).
 
 ## Citation
 ```
