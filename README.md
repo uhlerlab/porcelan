@@ -1,5 +1,5 @@
-# PORCELAN: Detecting lineage-related gene expression patterns
-This repository contains code for the paper "Detecting lineage-related gene expression patterns". We developed **P**ermutation, **O**ptimization, and **R**epresentation learning based single **C**ell gene **E**xpression and **L**ineage **AN**alysis (PORCELAN) to identify lineage-informative genes or subtrees where lineage and expression are tightly coupled:
+# PORCELAN: Integrating representation learning, permutation, and optimization to detect lineage-related gene expression patterns
+This repository contains code for the paper "Integrating representation learning, permutation, and optimization to detect lineage-related gene expression patterns". We developed **P**ermutation, **O**ptimization, and **R**epresentation learning based single **C**ell gene **E**xpression and **L**ineage **AN**alysis (PORCELAN) to identify lineage-informative genes or subtrees where lineage and expression are tightly coupled:
 
 ![porcelan_overview](https://github.com/uhlerlab/porcelan/assets/34376746/bc4ba6c2-00c9-4d34-b4e6-332ba64cf829)
 
@@ -11,11 +11,11 @@ This repository contains code for the paper "Detecting lineage-related gene expr
 ## Dependencies:
 **Python:**
 
-This repository was developed using Python 3.8. Additional required packages are listed in [`requirements.txt`](requirements.txt) and can be installed using the following command:
+This repository was developed using Python 3.8. You can use [Conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#) to create a virtual environment for a specific Python version. Additional required packages are listed in [`requirements.txt`](requirements.txt) and can be installed using the following command:
 ```
 pip install -r requirements.txt
 ```
-
+Installing dependencies can take a few minutes or up to an hour dependending on how many packages need to be downloaded rather than reusing cached versions.
 
 **R:**
 
