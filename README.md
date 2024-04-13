@@ -11,13 +11,19 @@ This repository contains code for the paper "Detecting lineage-related gene expr
 ## Dependencies:
 **Python:**
 
-This repository was developed using Python 3.8. Additional required packages can be installed using the following command:
+This repository was developed using Python 3.8. Additional required packages are listed in [`requirements.txt`](requirements.txt) and can be installed using the following command:
 ```
 pip install -r requirements.txt
 ```
+
+
 **R:**
 
 We only use R to simulate lineage-resolved gene expression data with TedSim ([installation instructions](https://github.com/Galaxeee/TedSim/tree/main)).
+
+**Operating system and hardware:**
+
+We tested this code on a machine running Ubuntu 20.04.3 and equipped with an NVIDIA RTX A5000 GPU.
 
 ## Citation
 ```
