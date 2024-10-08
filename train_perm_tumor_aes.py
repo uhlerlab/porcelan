@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from training import train_triplet
-from perm_util import extract_subsets_with_depth, get_permutation_ids, split_by_type
+from perm_util import extract_subsets_with_height, get_permutation_ids, split_by_type
 from tqdm import trange
 import argparse
 
@@ -21,9 +21,9 @@ def main(training_seed, max_depth, device, model_suffix, num_epochs=10, save_epo
   expression = expression[genes].values
   dim = len(genes)
 
-  for depth in trange(0, max_depth+1):
-    if depth > 0:
-      subtrees = extract_subsets_with_depth(TREE_PATH, depth=depth, include_labels=labels_in_order)
+  for height in trange(0, max_depth+1):
+    if height > 0:
+      subtrees = extract_subsets_with_height(TREE_PATH, height=height, include_labels=labels_in_order)
       label_subsets = []
       for stree in subtrees:
         if fixed_types:
@@ -33,16 +33,16 @@ def main(training_seed, max_depth, device, model_suffix, num_epochs=10, save_epo
 
     perm_seeds = [12345, 66689, 41382, 3838374, 12311] #, 882321, 121552, 72311, 41217, 91271]
     for perm_seed in perm_seeds:
-      if depth > 0:
+      if height > 0:
         perm_ids = get_permutation_ids(labels_in_order, label_subsets, seed=perm_seed)
         assert (not fixed_types) or (cell_types_in_order[perm_ids] == cell_types_in_order).all()
       elif perm_seed != perm_seeds[0]:
-        continue  # nothing to permute for depth 0, so skip all but first seed 
+        continue  # nothing to permute for height 0, so skip all but first seed 
       else:
         perm_ids = None
       _ = train_triplet(model=None, 
               model_path=MODEL_PREFIX + MODEL_KIND + '_lr1em4_e{:d}_b128_h{:s}_pd_pre_ts{:d}_perm{:d}d{:d}{:s}_g{:d}{:s}.pt'.format(
-                      num_epochs, f'{h:0.2f}'.replace('.', 'p') if np.ceil(h) != np.floor(h) else str(h), training_seed, perm_seed, depth, 'type' if fixed_types else '', dim, model_suffix), 
+                      num_epochs, f'{h:0.2f}'.replace('.', 'p') if np.ceil(h) != np.floor(h) else str(h), training_seed, perm_seed, height, 'type' if fixed_types else '', dim, model_suffix), 
                       training_seed=training_seed, n_genes=dim, h=h, gene_matrix=expression, apn_lut_path=LUT_PATH, 
                       display=False, num_epochs=num_epochs, device=device, batch_size=128, lr=1e-4, init_path=pre_train_path, 
                       perm_data_ids=perm_ids, save_epochs=save_epochs)

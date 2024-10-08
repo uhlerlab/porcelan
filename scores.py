@@ -5,7 +5,7 @@ import numpy as np
 from tqdm import trange, tqdm
 from ete3 import Tree
 
-from perm_util import extract_subsets_with_depth, get_permutation_ids
+from perm_util import extract_subsets_with_height, get_permutation_ids
 from tree_util import get_tree_dists, get_tree_info
 
 
@@ -213,22 +213,22 @@ def get_perm_dists(expression, tree_path, lut_path=None, device='cuda:0', shuffl
     expression_dists += torch.sum((data[None, :, left:left+gene_group_size] - data[:, None, left:left+gene_group_size])**2, axis=2)
   expression_dists = torch.sqrt(expression_dists)
 
-  depths = []
+  heights = []
   seeds = []
   la_xs = []
   dc_xs = []
   if lut_path is not None:
     trip_xs = []
     trip_correct_xs = []
-  for depth in trange(1, max_depth+1):
-    label_subsets = extract_subsets_with_depth(tree_path, depth, include_labels=subtree_labels)
+  for height in trange(1, max_depth+1):
+    label_subsets = extract_subsets_with_height(tree_path, height, include_labels=subtree_labels)
 
     perm_seeds = [12345, 66689, 41382, 3838374, 12311, 882321, 121552, 72311, 41217, 91271]
     for perm_seed in perm_seeds:
       perm_ids = get_permutation_ids(expression.index, label_subsets, seed=perm_seed)
       expression_dist_perm = expression_dists[perm_ids, :][:, perm_ids]
 
-      depths.append(depth)
+      heights.append(height)
       seeds.append(perm_seed)
 
       la_xs.append(local_autocorrelation(path_weights, data_norm[perm_ids], gene_group_size=gene_group_size).item())
@@ -240,14 +240,14 @@ def get_perm_dists(expression, tree_path, lut_path=None, device='cuda:0', shuffl
         trip_xs.append(torch.clip(trips + 1, min=0).mean().item()) # margin 1
 
   df = pd.DataFrame()
-  df['depth'] = depths
+  df['height'] = heights
   df['perm_seed'] = seeds
   df['la'] = la_xs
   df['dc'] = dc_xs
   if lut_path is not None:
     df['t'] = - np.array(trip_xs)
     df['tc'] = trip_correct_xs
-    agg = df.groupby(['depth']).agg(
+    agg = df.groupby(['height']).agg(
         la_expression_mean=pd.NamedAgg(column="la", aggfunc="mean"),
         la_expression_min=pd.NamedAgg(column="la", aggfunc="min"),
         la_expression_max=pd.NamedAgg(column="la", aggfunc="max"),
@@ -265,7 +265,7 @@ def get_perm_dists(expression, tree_path, lut_path=None, device='cuda:0', shuffl
         t_expression_max=pd.NamedAgg(column="t", aggfunc="max"),
         t_expression_std=pd.NamedAgg(column="t", aggfunc="std"))
   else:
-    agg = df.groupby(['depth']).agg(
+    agg = df.groupby(['height']).agg(
         la_expression_mean=pd.NamedAgg(column="la", aggfunc="mean"),
         la_expression_min=pd.NamedAgg(column="la", aggfunc="min"),
         la_expression_max=pd.NamedAgg(column="la", aggfunc="max"),
@@ -278,7 +278,7 @@ def get_perm_dists(expression, tree_path, lut_path=None, device='cuda:0', shuffl
   return agg
 
 
-def get_expected_lac_bmtm_depth_perm(etree, labels_in_order, labels_subset=None, gamma=10):
+def get_expected_lac_bmtm_height_perm(etree, labels_in_order, labels_subset=None, gamma=10):
   tree_dists, mrca_depths = get_tree_dists(etree, labels_in_order)
   _, max_depth = etree.get_farthest_node()
   max_depth = int(max_depth)
@@ -289,14 +289,14 @@ def get_expected_lac_bmtm_depth_perm(etree, labels_in_order, labels_subset=None,
     mrca_depths = mrca_depths[in_sub][:, in_sub]
   
   theo_perm_lac = np.zeros(max_depth)
-  for j, perm_d in enumerate(range(1, max_depth+1)):
-    subsets = extract_subsets_with_depth(etree, depth=perm_d, 
+  for j, perm_height in enumerate(range(1, max_depth+1)):
+    subsets = extract_subsets_with_height(etree, height=perm_height, 
                                          include_labels=labels_in_order if labels_subset is None else labels_subset,
                                          return_ids=True)
     theo_perm_lac[j] = lac_theoretical_perm(mrca_depths, tree_dists, subsets, gamma=gamma)
 
   df = pd.DataFrame()
-  df['depth'] = list(range(1, max_depth+1))
+  df['height'] = list(range(1, max_depth+1))
   df['lac'] = theo_perm_lac
   return df
 

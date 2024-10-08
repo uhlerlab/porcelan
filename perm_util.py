@@ -39,9 +39,9 @@ def get_permutation_ids(labels_in_order, label_subsets, seed):
   return canon_perm
 
 
-def get_cluster_ids(tree, labels, depth=2):
+def get_cluster_ids(tree, labels, height=2):
   cluster_roots = [tree.seed_node]
-  for i in range(depth):
+  for i in range(height):
     cluster_children = []
     for root in cluster_roots:
       if root.is_leaf():
@@ -65,7 +65,7 @@ def subset_labels(subsets, labels):
   return subset_labels
 
 
-def extract_subsets_with_depth(tree, depth, include_labels, return_ids=False):
+def extract_subsets_with_height(tree, height, include_labels, return_ids=False):
   if isinstance(tree, str): 
     tree = Tree(tree, quoted_node_names=True, format=1)
   else:
@@ -75,7 +75,7 @@ def extract_subsets_with_depth(tree, depth, include_labels, return_ids=False):
   while not arrived_at_root:
     to_prune = []
     for node in tree.iter_search_nodes():
-      if node.get_farthest_leaf()[1] == depth:
+      if node.get_farthest_leaf()[1] == height:
         # post order includes node but not leaves
         sub_labels = np.array([child.name for child in node.iter_search_nodes()])
         sub_labels = sub_labels[np.isin(sub_labels, include_labels)]
@@ -89,8 +89,8 @@ def extract_subsets_with_depth(tree, depth, include_labels, return_ids=False):
           break
         node.detach()
     else:
-      assert depth > 0
-      depth -= 1  # try shallower subtrees
+      assert height > 0
+      height -= 1  # try shallower subtrees
   
   assert sum(map(len, subsets)) == len(include_labels)
   if not return_ids:

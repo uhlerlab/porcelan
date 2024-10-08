@@ -6,8 +6,8 @@ from ete3 import Tree
 import dendropy
 
 
-def make_binary_tree(depth):
-  subtrees = [f'L{n:04d}:1' for n in range(2**depth)]
+def make_binary_tree(height):
+  subtrees = [f'L{n:04d}:1' for n in range(2**height)]
   while len(subtrees) > 1:
     a, b, subtrees = subtrees[0], subtrees[1], subtrees[2:]
     subtrees.append(f'({a}, {b}):1')
