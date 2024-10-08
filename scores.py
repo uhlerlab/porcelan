@@ -278,7 +278,7 @@ def get_perm_dists(expression, tree_path, lut_path=None, device='cuda:0', shuffl
   return agg
 
 
-def get_expected_lac_bmtm_depth_perm(etree, labels_in_order, labels_subset=None):
+def get_expected_lac_bmtm_depth_perm(etree, labels_in_order, labels_subset=None, gamma=10):
   tree_dists, mrca_depths = get_tree_dists(etree, labels_in_order)
   _, max_depth = etree.get_farthest_node()
   max_depth = int(max_depth)
@@ -293,7 +293,7 @@ def get_expected_lac_bmtm_depth_perm(etree, labels_in_order, labels_subset=None)
     subsets = extract_subsets_with_depth(etree, depth=perm_d, 
                                          include_labels=labels_in_order if labels_subset is None else labels_subset,
                                          return_ids=True)
-    theo_perm_lac[j] = lac_theoretical_perm(mrca_depths, tree_dists, subsets)
+    theo_perm_lac[j] = lac_theoretical_perm(mrca_depths, tree_dists, subsets, gamma=gamma)
 
   df = pd.DataFrame()
   df['depth'] = list(range(1, max_depth+1))

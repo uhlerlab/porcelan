@@ -184,7 +184,13 @@ def _eval_all(model, data, apn_lut):
 
   print('Total rec loss:', rec_loss.item())
 
-  triplets = torch.argwhere(apn_lut)
+  if np.product(apn_lut.shape) < 2147483647:  # INT_MAX
+    triplets = torch.argwhere(apn_lut)
+  else: 
+    triplets = []
+    for a in range(len(apn_lut)):
+      triplets.extend([(a, p, n) for (p, n) in torch.argwhere(apn_lut[a])])
+    triplets = torch.tensor(triplets)
   trip_loss = 0
   trip_batch_size = 3000
   for i in range(0, len(triplets), trip_batch_size):
@@ -199,7 +205,7 @@ def train_triplet(model, model_path, expression_path=None, apn_lut_path=None, ge
           num_epochs=1000, lr=1e-3, h=1, device="cuda:1", dist_func=None,
           perm_data_seed=None, perm_data_ids=None, resample_data_seed=None, n_genes=100, init_path=None,
           training_seed=training_seed, display=True, lut_on_device=True, save_epochs='last', 
-          apn_subset_indexer=None, save_final_checkpoint=False):
+          apn_subset_indexer=None, save_final_checkpoint=False, eval_final_all_if_display=True):
 
   if init_path is not None:
     print('loading model from path', init_path)
@@ -305,7 +311,8 @@ def train_triplet(model, model_path, expression_path=None, apn_lut_path=None, ge
   df.to_csv(model_path[:-3] + '_loss.csv', index=False)
 
   if display:
-    _eval_all(model, data, apn_lut)
+    if eval_final_all_if_display:
+        _eval_all(model, data, apn_lut)
     fig = _get_loss_plot(trip_losses, rec_losses, total_losses, xlabel='iteration')
     return fig
   return None

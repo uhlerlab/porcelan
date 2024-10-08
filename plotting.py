@@ -6,7 +6,7 @@ from sklearn.manifold import TSNE
 from sklearn.decomposition import PCA
 
 
-kp_color_domain = list(range(29)) + [
+kp_color_domain = list(range(30)) + [
   None,
  'AT1-like',
  'AT2-like',
@@ -45,10 +45,11 @@ nice_colors = ['#bcbcbc',
                '#17becf',
                '#66c2a5',
                '#fc8d62',
+               '#4287f5',
                '#8da0cb',
                '#e78ac3',
                '#a6d854',
-               '#ffd92f',
+               '#28522e',
                '#e5c494',
                '#232323',
                '#fbb4ae',
@@ -58,7 +59,7 @@ nice_colors = ['#bcbcbc',
                '#fed9a6',
                '#ffffcc',
                '#e5d8bd',
-               # repeat 
+               # repeat including first which is for NaN 
                '#bcbcbc',
                '#5d00c3',
                '#1f77b4',
@@ -95,7 +96,7 @@ def _augment_source_with_leaf_embedding(node_data, cell_labels, embed_xy, suffix
 def single_tree_plot(nodes, edges, cell_labels, colors, color_names,
                      ordinal_colors=False, continuous_colors=False,  use_kp_domain=True,
                      disable_grid=True, show_legend=True, tooltip_names=None, nan_smaller=False,
-                     width=350, node_size=30, additional_colors=[], additional_color_domain=[]):
+                     width=350, node_size=30, additional_colors=[], additional_color_domain=[], line_width=1):
   
   nodes = _augment_source_with_labels(nodes, cell_labels, colors, color_names)
   cluster_dropdown = alt.selection_single(fields=['color'],
@@ -138,7 +139,7 @@ def single_tree_plot(nodes, edges, cell_labels, colors, color_names,
       stroke="#ccc"
   )
 
-  tree = links.encode(x='sx:Q', x2='tx:Q', y='sy:Q', y2='ty:Q') + nodes.encode(x='x:Q', y='y:Q').interactive()
+  tree = links.encode(x='sx:Q', x2='tx:Q', y='sy:Q', y2='ty:Q', size=alt.value(line_width)) + nodes.encode(x='x:Q', y='y:Q').interactive()
 
   if disable_grid:
     return tree.configure_axis(grid=False, disable=True).configure_view(strokeWidth=0)
@@ -156,7 +157,8 @@ def _generate_circle(r, n_lines=100):
 def interactive_plot(nodes, edges, cell_labels, clusters, cluster_names, 
                      embed_xy_list, embed_xy_title_list, title_tree='lineage tree',
                      ordinal_colors=False, continuous_colors=False, add_unit_circle=None, plots_per_row=4, 
-                     disable_grid=True, show_internal_labeled=False, use_kp_domain=True, additional_colors=[]):
+                     disable_grid=True, show_internal_labeled=False, use_kp_domain=True, additional_colors=[],
+                     line_width=1, additional_color_domain=None):
   nodes = _augment_source_with_labels(nodes, cell_labels, clusters, cluster_names)
   for i, embed_xy in enumerate(embed_xy_list):
     nodes = _augment_source_with_leaf_embedding(nodes, cell_labels, embed_xy, '_' + str(i))
@@ -177,7 +179,9 @@ def interactive_plot(nodes, edges, cell_labels, clusters, cluster_names,
     # if not nodes[nodes['is_leaf']].eq(0).any().any() and not nodes[nodes['is_leaf']].isna().any().any():
     #   color_range = color_range[1:]  # first is reserved for N/A
     if use_kp_domain:
-      cond_color = alt.Color('color:N', scale=alt.Scale(range=color_range + additional_colors, domain=kp_color_domain + additional_colors), legend=alt.Legend(columns=8, symbolLimit=0))
+      if additional_color_domain is None:
+        additional_color_domain = additional_colors
+      cond_color = alt.Color('color:N', scale=alt.Scale(range=color_range + additional_colors, domain=kp_color_domain + additional_color_domain), legend=alt.Legend(columns=8, symbolLimit=0))
     else: 
       cond_color = alt.Color('color:N', scale=alt.Scale(range=color_range + additional_colors), legend=alt.Legend(columns=8, symbolLimit=0))
 
@@ -214,10 +218,11 @@ def interactive_plot(nodes, edges, cell_labels, clusters, cluster_names,
     x='sx:Q', 
     x2='tx:Q',
     y='sy:Q',
-    y2='ty:Q'
+    y2='ty:Q',
+    size=alt.value(line_width)
   )
 
-  tree = internal_nodes + links + base.encode(x='x:Q', y='y:Q')
+  tree = links + internal_nodes + base.encode(x='x:Q', y='y:Q')
   tree = tree.properties(title = alt.TitleParams(text=title_tree, fontSize=15)).interactive()
 
   if add_unit_circle is not None:
@@ -255,7 +260,7 @@ NAN_COLOR_VALUE = 0.0012345678  # altair isValid doesn't seem to catch np.nan --
 def double_tree_plot(nodes, edges, cell_labels, colors, color_names,
                      ordinal_colors=False, continuous_colors=False,  use_kp_domain=True,
                      disable_grid=True, show_legend=True, tooltip_names=None,
-                     width=350, node_size=30, additional_colors=[], additional_color_domain=[]):
+                     width=350, node_size=30, additional_colors=[], additional_color_domain=[], line_width=1):
   
   nodes = _augment_source_with_labels(nodes, cell_labels, colors, color_names)
   cluster_dropdown = alt.selection_single(fields=['color'],
@@ -295,8 +300,8 @@ def double_tree_plot(nodes, edges, cell_labels, colors, color_names,
       stroke="#ccc"
   )
 
-  tree_left = links.encode(x='sx_a:Q', x2='tx_a:Q', y='sy_a:Q', y2='ty_a:Q') + nodes.encode(x='x_a:Q', y='y_a:Q')
-  tree_right = links.encode(x='sx_b:Q', x2='tx_b:Q', y='sy_b:Q', y2='ty_b:Q') + nodes.encode(x='x_b:Q', y='y_b:Q')
+  tree_left = links.encode(x='sx_a:Q', x2='tx_a:Q', y='sy_a:Q', y2='ty_a:Q', size=alt.value(line_width)) + nodes.encode(x='x_a:Q', y='y_a:Q')
+  tree_right = links.encode(x='sx_b:Q', x2='tx_b:Q', y='sy_b:Q', y2='ty_b:Q', size=alt.value(line_width)) + nodes.encode(x='x_b:Q', y='y_b:Q')
   tree = tree_left.interactive() | tree_right.interactive()
 
   if disable_grid:
