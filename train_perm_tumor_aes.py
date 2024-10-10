@@ -75,7 +75,7 @@ if __name__ == "__main__":
     EXPRESSION_PATH = f'data/preprocessed/{name}_normalized_log_counts.txt'
     GENES_PATH = f'data/preprocessed/{name}{args.model_suffix}_genes.txt'
     LUT_PATH = f'data/preprocessed/{name}_apn_pd_triplet_lut.npy'
-  MODEL_PREFIX = f'results/{name}_'
+  MODEL_PREFIX = f'results/ae/{name}_'
   MODEL_PRETRAIN_SUFFIX = f'{args.model_kind}_lr1em4_e500_b128{args.model_suffix}.pt'
   MODEL_KIND = args.model_kind
 
