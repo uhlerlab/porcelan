@@ -10,3 +10,6 @@ The tutorial works best on a machine with GPU capabilities and has not been test
 4.   Open this notebook on your jupyter notebook server. Alternatively you can connect a Google Colab 
      notebook to your local jupyter notebook server as described 
      [here](https://research.google.com/colaboratory/local-runtimes.html).
+
+You can download a version of the results files produced by the tutorial 
+[here](https://drive.google.com/file/d/1TCyrPIRggvweuFSYwrS2PnctEH5-TFdL/view?usp=sharing).
