@@ -32,9 +32,8 @@ def get_apn_dist_triplet_lut(dist_matrix):
   n = len(dist_matrix)
   apn_lut = np.zeros((n, n, n), dtype=bool)
   for a in trange(len(dist_matrix)):
-    pn_order_neg_minus_pos = - dist_matrix[a].reshape(-1, 1) + dist_matrix[a].reshape(1, -1)
-    # neg - pos >= ||a - pos||
-    apn_lut[a] = pn_order_neg_minus_pos >= dist_matrix[a].reshape(-1, 1)
+    # |a - n| >= 2 |a - p|
+    apn_lut[a] = dist_matrix[a].reshape(1, -1) >= 2 * dist_matrix[a].reshape(-1, 1)
     apn_lut[a, a, :] = 0
     apn_lut[a, :, a] = 0
   return apn_lut
