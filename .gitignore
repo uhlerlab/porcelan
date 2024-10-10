@@ -1,3 +1,5 @@
 __pycache__/
 example.csv
 example_loss.png
+old_*
+PoincareMaps/

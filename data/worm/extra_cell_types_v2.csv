@@ -1,0 +1,130 @@
+leaf,type
+ABALAAAALAL,Ring motor neuron/interneuron
+ABALAAAALP,Inner labial cell
+ABALAAAARLP,Ring motor neuron/interneuron
+ABALAAAARR,Ring motor neuron/interneuron
+ABALAAAPALR,Ventral cord motor neuron/interneuron
+ABALAAAPAR,Inner labial cell
+ABALAAAPPR,Ventral cord motor neuron/interneuron
+ABALAAPAAA,Ring motor neuron/interneuron
+ABALAAPPAPA,Ventral cord motor neuron/interneuron
+ABALAAPPPAA,Ring motor neuron/interneuron
+ABALAPAAAAA,Neuron
+ABALAPAAAPA,"Process runs along excretory canal, no synapses, essential for survival"
+ABALAPAPPPA,Neuron
+ABALAPPAAPA,Ring motor neuron/interneuron
+ABALAPPAPA,Neuron
+ABALAPPAPP,"Process runs along excretory canal, no synapses, essential for survival"
+ABALAPPPAAA,Neuron
+ABALAPPPPP,Neuron
+ABALPAAAAA,Pharyngeal cell
+ABALPAAAAP,Pharyngeal cell
+ABALPAAAPA,Pharyngeal cell
+ABALPAAAPP,Pharyngeal neuron
+ABALPAPAAA,Ring/pharynx interneuron
+ABALPAPAPAA,Ring motor neuron/interneuron
+ABALPAPAPAPP,Ring motor neuron/interneuron
+ABALPAPAPP,Ring motor neuron/interneuron
+ABALPAPPPP,Pharyngeal cell
+ABALPPAAAP,Ventral cord motor neuron/interneuron
+ABALPPAAPP,Cephalic socket
+ABALPPAPAA,Inner labial cell
+ABALPPAPAP,Inner labial cell
+ABALPPAPPAA,Ring motor neuron/interneuron
+ABALPPPAAAA,Ventral cord motor neuron/interneuron
+ABALPPPAAP,Lateral outer labial cell
+ABALPPPPPPPP,Neuron
+ABARAAAAAA,Pharyngeal cell
+ABARAAAAPA,Pharyngeal cell
+ABARAAAPAA,Pharyngeal cell
+ABARAAAPAP,Pharyngeal cell
+ABARAAAPPA,Pharyngeal cell
+ABARAAAPPP,Pharyngeal cell
+ABARAAPAAA,Pharyngeal cell
+ABARAAPPAP,Pharyngeal cell
+ABARAAPPP,Pharyngeal neuron
+ABARAPAAA,Pharyngeal cell
+ABARAPAAP,Pharyngeal neuron
+ABARAPAPAPP,Pharyngeal neuron
+ABARAPAPP,Pharyngeal neuron
+ABARAPPAAA,Pharyngeal neuron
+ABARAPPAP,Ventral cord motor neuron/interneuron
+ABARAPPPA,Inner labial cell
+ABARAPPPPA,Neuron
+ABARPAAPP,Hypodermal syncytium
+ABARPAPAAA,Ring motor neuron/interneuron
+ABARPPAAPPA,Neuron
+ABARPPPAA,Seam hypodermal cell
+ABARPPPAPP,Neuron
+ABPLAAAAP,Hypodermal syncytium
+ABPLAAAPA,Hypodermal syncytium
+ABPLAAAPP,Seam hypodermal cell
+ABPLAAPAAP,Neuron
+ABPLAAPAPPA,Amphid interneuron
+ABPLAPAAAPAD,Neuron
+ABPLAPAAAPAV,Amphid interneuron
+ABPLAPAPAA,Seam hypodermal cell
+ABPLAPAPAP,Ventral hypodermis
+ABPLAPPAAP,Ventral hypodermis
+ABPLAPPPAAA,Interneuron
+ABPLAPPPAPPP,Phasmid neurons
+ABPLAPPPPA,Hypodermal syncytium
+ABPLAPPPPP,Seam hypodermal cell
+ABPLPAAAPA,Ring motor neuron/interneuron
+ABPLPAAPAAA,Ring motor neuron/interneuron
+ABPLPAAPAAP,Ventral cord motor neuron/interneuron
+ABPLPAAPPAP,Ring motor neuron/interneuron
+ABPLPAAPPPA,Ring motor neuron/interneuron
+ABPLPAPAAAP,Amphid interneuron
+ABPLPAPAAPA,"Receives a few synapses in the ring, has a posteriorly directed process that runs sublaterally"
+ABPLPAPAAPP,"Receives a few synapses in the ring, has a posteriorly directed process that runs sublaterally"
+ABPLPAPAPAP,Ring and ventral cord interneuron
+ABPLPAPAPP,Ventral cord motor neuron/interneuron
+ABPLPAPPPPA,Ring and ventral cord interneuron
+ABPLPPAAAAPP,Ring motor neuron/interneuron
+ABPLPPAAPAP,Ring motor neuron/interneuron
+ABPLPPAAPP,Amphid interneuron
+ABPLPPAPAP,Ventral cord motor neuron/interneuron
+ABPLPPAPPA,Ventral cord motor neuron/interneuron
+ABPLPPAPPP,Ventral cord motor neuron/interneuron
+ABPLPPPAAA,Ventral cord motor neuron/interneuron
+ABPLPPPAAPA,Interneuron
+ABPLPPPAPA,Ventral hypodermis
+ABPLPPPPAAA,Ring and ventral cord interneuron
+ABPLPPPPPA,Intestinal cell
+ABPLPPPPPP,Ventral hypodermis
+ABPRAAAAAA,Ventral cord motor neuron/interneuron
+ABPRAAPAAA,Inner labial cell
+ABPRAAPPA,Hypodermal syncytium
+ABPRAAPPP,Hypodermal syncytium
+ABPRAPAAAPA,Amphid interneuron
+ABPRAPAAP,Ventral hypodermis
+ABPRAPAP,Many different descendants
+ABPRAPPAA,Ventral hypodermis
+ABPRAPPAP,Ventral hypodermis
+ABPRAPPPAA,Ring and ventral cord interneuron
+ABPRAPPPP,Hypodermal syncytium
+ABPRPAAAP,Neuron
+ABPRPAAPAA,Interneuron
+ABPRPAAPAP,Amphid cell
+ABPRPAPAAA,Amphid interneuron
+ABPRPAPAAP,"Receives a few synapses in the ring, has a posteriorly directed process that runs sublaterally"
+ABPRPAPPAAA,Ring motor neuron/interneuron
+ABPRPAPPAAP,Ring and ventral cord interneuron
+ABPRPAPPAPA,Ring motor neuron/interneuron
+ABPRPAPPPAP,Ventral cord motor neuron/interneuron
+ABPRPAPPPP,Intestinal cell
+ABPRPPAAAAP,Ring motor neuron/interneuron
+ABPRPPAAPA,Ring motor neuron/interneuron
+ABPRPPAPA,Ventral cord motor neuron/interneuron
+ABPRPPAPP,Ventral cord motor neuron/interneuron
+ABPRPPPPAA,Ring and ventral cord interneuron
+ABPRPPPPAPP,Ring motor neuron/interneuron
+ABPRPPPPP,Ventral hypodermis
+CAAPAA,Ring motor neuron/interneuron
+CAAPPV,Ventral cord motor neuron/interneuron
+MSAPAAP,Postembryonic mesoblast
+MSPAAAPP,Pharyngeal cell
+MSPAPAPP,Pharyngeal cell
+MSPPPAA,Somatic gonad precursor cell
+MSPPPAP,Body wall muscle
