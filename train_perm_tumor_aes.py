@@ -42,7 +42,7 @@ def main(training_seed, max_depth, device, model_suffix, num_epochs=10, save_epo
         perm_ids = None
       _ = train_triplet(model=None, 
               model_path=MODEL_PREFIX + MODEL_KIND + '_lr1em4_e{:d}_b128_h{:s}_pd_pre_ts{:d}_perm{:d}d{:d}{:s}_g{:d}{:s}.pt'.format(
-                      num_epochs, f'{h:0.2f}'.replace('.', 'p') if np.ceil(h) != np.floor(h) else str(h), training_seed, perm_seed, height, 'type' if fixed_types else '', dim, model_suffix), 
+                      num_epochs, f'{h:0.2f}'.replace('.', 'p') if np.ceil(h) != np.floor(h) else str(int(h)), training_seed, perm_seed, height, 'type' if fixed_types else '', dim, model_suffix), 
                       training_seed=training_seed, n_genes=dim, h=h, gene_matrix=expression, apn_lut_path=LUT_PATH, 
                       display=False, num_epochs=num_epochs, device=device, batch_size=128, lr=1e-4, init_path=pre_train_path, 
                       perm_data_ids=perm_ids, save_epochs=save_epochs)
