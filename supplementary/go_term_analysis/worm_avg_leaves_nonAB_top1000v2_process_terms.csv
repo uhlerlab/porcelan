@@ -1,0 +1,59 @@
+Term,Adjusted P-value,Adjusted P-value using all genes
+muscle contraction (GO:0006936),2.4955417e-09,0.00050376711125
+regulation of sarcomere organization (GO:0060297),1.269601362e-07,3.95778346113e-05
+positive regulation of sarcomere organization (GO:0060298),1.269601362e-07,3.95778346113e-05
+positive regulation of striated muscle cell differentiation (GO:0051155),1.269601362e-07,3.95778346113e-05
+positive regulation of cell development (GO:0010720),1.269601362e-07,3.95778346113e-05
+myofibril assembly (GO:0030239),2.26214e-11,2.756305308e-07
+actomyosin structure organization (GO:0031032),5.1776196e-09,3.95778346113e-05
+heart contraction (GO:0060047),0.0001951720876081,0.0440292942065246
+positive regulation of ovulation (GO:0060279),1.82602094801e-05,0.0014130395294378
+skeletal myofibril assembly (GO:0014866),1.14705942302e-05,0.0006878391775028
+striated muscle cell development (GO:0055002),3.77112117472e-05,0.000353173891614
+positive regulation of cytoskeleton organization (GO:0051495),6.324388485e-07,0.0002287776515377
+striated muscle myosin thick filament assembly (GO:0071688),3.77112117472e-05,0.0339535392194222
+positive regulation of supramolecular fiber organization (GO:1902905),7.2548818989e-06,0.000353173891614
+striated muscle cell differentiation (GO:0051146),0.0001951720876081,0.0035196972017244
+sarcomere organization (GO:0045214),1.14705942302e-05,0.0006878391775028
+pyrimidine nucleobase catabolic process (GO:0006208),0.0003230813565052,0.0613983668861238
+positive regulation of organelle assembly (GO:1902117),2.89532537862e-05,0.0157102433697663
+regulation of ovulation (GO:0060278),9.87725408201e-05,0.0123261110832954
+muscle organ development (GO:0007517),8.39505678422e-05,0.0440292942065246
+actin filament organization (GO:0007015),0.0001484095352439,0.0051237765155909
+negative regulation of epidermal growth factor receptor signaling pathway (GO:0042059),0.0147731422660941,0.0856649095961642
+striated muscle contraction (GO:0006941),0.0123858266343701,0.2854374104390491
+basement membrane organization (GO:0071711),0.0147731422660941,0.3150642815578295
+regulation of smooth muscle contraction (GO:0006940),0.017562141022387,0.1016704010853181
+regulation of distal tip cell migration (GO:1903354),0.0004339065113449,0.0604299413319498
+positive regulation of multi-organism process (GO:0043902),0.0008168463647661,0.1002829003686179
+regulation of engulfment of apoptotic cell (GO:1901074),0.0006052947706245,0.2279015912419402
+cellular modified amino acid biosynthetic process (GO:0042398),0.0147731422660941,0.3150642815578295
+positive regulation of muscle contraction (GO:0045933),0.0045617485036772,0.1025854739326175
+"positive regulation of phagocytosis, engulfment (GO:0060100)",0.0050621798305914,0.1251364915940864
+pyruvate metabolic process (GO:0006090),0.0050621798305914,0.3150642815578295
+negative regulation of ERBB signaling pathway (GO:1901185),0.0123858266343701,0.0613983668861238
+regulation of epidermal growth factor receptor signaling pathway (GO:0042058),0.0227970721673315,0.1539242768017241
+pyrimidine nucleobase metabolic process (GO:0006206),0.0123858266343701,0.2854374104390491
+positive regulation of smooth muscle contraction (GO:0045987),0.0147731422660941,0.0856649095961642
+positive regulation of engulfment of apoptotic cell (GO:1901076),0.0039277416521884,0.2854374104390491
+myosin filament assembly (GO:0031034),0.0203971087981585,0.3747519396737276
+axonal fasciculation (GO:0007413),0.0227970721673315,0.1539242768017241
+hermaphrodite genitalia morphogenesis (GO:0048815),0.0203971087981585,0.3747519396737276
+vulval cell fate specification (GO:0072327),0.0203971087981585,0.130921024629187
+vulval cell fate commitment (GO:0072325),0.0227970721673315,0.1539242768017241
+extracellular matrix organization (GO:0030198),0.0076162584750519,0.044027096170707
+glycolytic process (GO:0006096),0.0342975489034922,0.5084914733937455
+ATP generation from ADP (GO:0006757),0.0342975489034922,0.5084914733937455
+regulation of muscle system process (GO:0090257),0.017562141022387,0.5951311906475809
+positive regulation of apoptotic cell clearance (GO:2000427),0.0039277416521884,0.2854374104390491
+carbohydrate catabolic process (GO:0016052),0.0468676326255632,0.5951311906475809
+regulation of cytoskeleton organization (GO:0051493),0.0067445230559827,0.1570555467456367
+cortical actin cytoskeleton organization (GO:0030866),0.0430894693286465,0.5720555677920619
+axon development (GO:0061564),0.0164284901544739,0.3271197340670237
+nicotinamide nucleotide metabolic process (GO:0046496),0.0468676326255632,0.5951311906475809
+regulation of muscle contraction (GO:0006937),0.0241137452132336,0.5951311906475809
+positive regulation of distal tip cell migration (GO:1903356),0.0430894693286465,0.2854374104390491
+positive regulation of reproductive process (GO:2000243),0.0100463262505534,0.1460751659841668
+neuron projection fasciculation (GO:0106030),0.0227970721673315,0.1539242768017241
+neuron migration (GO:0001764),0.0337901765333369,0.071617777498995
+embryo development ending in birth or egg hatching (GO:0009792),0.010761522281519,0.0003969441502421
