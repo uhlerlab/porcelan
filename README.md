@@ -28,5 +28,14 @@ We tested this code on a machine running Rocky Linux 8.8 (Green Obsidian) and eq
 
 ## Citation
 ```
-TODO
+@article{schluter2025integrating,
+  title={Integrating representation learning, permutation, and optimization to detect lineage-related gene expression patterns},
+  author={Schl{\"u}ter, Hannah M and Uhler, Caroline},
+  journal={Nature Communications},
+  volume={16},
+  number={1},
+  pages={1062},
+  year={2025},
+  publisher={Nature Publishing Group UK London}
+}
 ```
